@@ -6,8 +6,9 @@ import {
 import "./styles.css";
 
 /* ── helpers ── */
+const BASE_URL = import.meta.env.VITE_API_URL || "";
 const api = async (url, opts) => {
-  const res = await fetch(url, { headers: { "Content-Type": "application/json" }, ...opts });
+  const res = await fetch(BASE_URL + url, { headers: { "Content-Type": "application/json" }, ...opts });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error((data.errors || ["Request failed"]).join(", "));
   return data;
