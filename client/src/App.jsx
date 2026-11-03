@@ -6,7 +6,7 @@ import {
 import "./styles.css";
 
 /* ── helpers ── */
-const BASE_URL = import.meta.env.VITE_API_URL || "";
+const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "https://sales-pattern-explorer.onrender.com" : "");
 const api = async (url, opts) => {
   const res = await fetch(BASE_URL + url, { headers: { "Content-Type": "application/json" }, ...opts });
   const data = await res.json().catch(() => ({}));
