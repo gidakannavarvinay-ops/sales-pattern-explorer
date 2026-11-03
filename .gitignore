@@ -1,0 +1,18 @@
+# Dependencies - never push node_modules (too large)
+node_modules/
+server/node_modules/
+client/node_modules/
+
+# Environment secrets - NEVER push .env (contains your password!)
+.env
+server/.env
+.env.local
+.env.production
+
+# Build output
+client/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
