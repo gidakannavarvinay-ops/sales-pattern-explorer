@@ -44,6 +44,23 @@ const clean = (b) => ({
 
 const wrap = (fn) => (req, res, next) => fn(req, res, next).catch(next);
 
+// ---------- Root / Health Check ----------
+app.get("/", (req, res) => {
+  res.json({
+    status: "online",
+    message: "SalesPattern Explorer REST API is running",
+    dashboard: "https://sales-pattern-explorer.vercel.app",
+    endpoints: [
+      "GET  /api/sales",
+      "POST /api/sales",
+      "POST /api/sales/bulk",
+      "GET  /api/analytics/periods",
+      "GET  /api/analytics/compare",
+      "GET  /api/analytics/top-products"
+    ]
+  });
+});
+
 // ---------- CRUD ----------
 app.get("/api/sales", wrap(async (req, res) => {
   res.json(await Sale.find().sort({ date: -1 }).limit(200));
